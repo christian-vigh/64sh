@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="Source\64sh.asm" />
+    <MASM Include="Source\CommandLine.asm" />
+    <MASM Include="Source\Interpreter.asm" />
+    <MASM Include="Source\Primitives\Primitives.asm" />
+    <MASM Include="Source\String\Base64Decode.asm" />
+    <MASM Include="Source\String\Base64Encode.asm" />
+    <MASM Include="Source\String\CatenateChar.asm" />
+    <MASM Include="Source\String\CatenateString.asm" />
+    <MASM Include="Source\String\Compare.asm" />
+    <MASM Include="Source\String\CompareFixed.asm" />
+    <MASM Include="Source\String\CompareFixedNoCase.asm" />
+    <MASM Include="Source\String\CompareNoCase.asm" />
+    <MASM Include="Source\String\Concatenate.asm" />
+    <MASM Include="Source\String\Copy.asm" />
+    <MASM Include="Source\String\CopyFixed.asm" />
+    <MASM Include="Source\String\CopyLeft.asm" />
+    <MASM Include="Source\String\CopyRight.asm" />
+    <MASM Include="Source\String\CountCharOccurrences.asm" />
+    <MASM Include="Source\String\CountCharOccurrencesNoCase.asm" />
+    <MASM Include="Source\String\Delete.asm" />
+    <MASM Include="Source\String\DeleteLeft.asm" />
+    <MASM Include="Source\String\DeleteRight.asm" />
+    <MASM Include="Source\String\DuplicateChar.asm" />
+    <MASM Include="Source\String\DuplicateString.asm" />
+    <MASM Include="Source\String\FormatString.asm.work" />
+    <MASM Include="Source\String\Helpers.asm" />
+    <MASM Include="Source\String\IntegerToString.asm" />
+    <MASM Include="Source\String\Length.asm" />
+    <MASM Include="Source\String\RepeatChar.asm" />
+    <MASM Include="Source\String\RepeatString.asm" />
+    <MASM Include="Source\String\ReplaceChar.asm" />
+    <MASM Include="Source\String\ReplaceCharNoCase.asm" />
+    <MASM Include="Source\String\ReplaceString.asm" />
+    <MASM Include="Source\String\Reverse.asm" />
+    <MASM Include="Source\String\Right.asm" />
+    <MASM Include="Source\String\SearchChar.asm" />
+    <MASM Include="Source\String\SearchCharNoCase.asm" />
+    <MASM Include="Source\String\Left.asm" />
+    <MASM Include="Source\String\SearchString.asm" />
+    <MASM Include="Source\String\SearchStringNoCase.asm" />
+    <MASM Include="Source\String\StripChar.asm" />
+    <MASM Include="Source\String\Tables.asm" />
+    <MASM Include="Source\String\ToFloat.asm.work" />
+    <MASM Include="Source\String\ToInteger.asm" />
+    <MASM Include="Source\String\ToLowerChar.asm" />
+    <MASM Include="Source\String\ToLowerString.asm" />
+    <MASM Include="Source\String\ToUpperChar.asm" />
+    <MASM Include="Source\String\ToUpperString.asm" />
+    <MASM Include="Source\String\Trim.asm" />
+    <MASM Include="Source\String\TrimLeft.asm" />
+    <MASM Include="Source\String\TrimRight.asm" />
+    <MASM Include="Source\String\UnsignedToBase16String.asm" />
+    <MASM Include="Source\String\UnsignedToBase2String.asm" />
+    <MASM Include="Source\String\UnsignedToBase8String.asm" />
+    <MASM Include="Source\String\UnsignedToString.asm" />
+    <MASM Include="Source\Syscalls.asm" />
+    <MASM Include="Source\VM.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Include\Assembler.inc" />
+    <None Include="Include\64th.inc" />
+    <None Include="Include\64sh.inc" />
+    <None Include="Include\CommandLine.inc" />
+    <None Include="Include\Debug.inc" />
+    <None Include="Include\Macros.inc" />
+    <None Include="Include\String.inc" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7F694A10-7DFD-48EF-A5D8-5EB9B3E61AF5}</ProjectGuid>
+    <RootNamespace>64sh</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)\Bin\$(Configuration)\$(Platform)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IntDir>$(ProjectDir)\Bin\$(Configuration)\$(Platform)\Obj\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)\Bin\$(Configuration)\$(Platform)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IntDir>$(ProjectDir)\Bin\$(Configuration)\$(Platform)\Obj\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>masm32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+      <EntryPointSymbol>Main</EntryPointSymbol>
+      <AdditionalLibraryDirectories>C:\Masm32\Include;C:\Masm32\Lib;C:\Masm32\Macros</AdditionalLibraryDirectories>
+    </Link>
+    <MASM>
+      <IncludePaths>C:\Masm32\Include;C:\Masm32\Lib;C:\Masm32\Macros;$(ProjectDir)\Include</IncludePaths>
+      <GeneratePreprocessedSourceListing>false</GeneratePreprocessedSourceListing>
+      <EnableAssemblyGeneratedCodeListing>true</EnableAssemblyGeneratedCodeListing>
+    </MASM>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;psapi.lib;masm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+      <EntryPointSymbol>Main</EntryPointSymbol>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Lib\x64;C:\Masm32\Lib</AdditionalLibraryDirectories>
+      <ShowProgress>LinkVerbose</ShowProgress>
+      <DataExecutionPrevention>false</DataExecutionPrevention>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+    <MASM>
+      <IncludePaths>$(ProjectDir)\Include;C:\Masm32\Include;C:\Masm32\Lib;C:\Masm32\Macros</IncludePaths>
+      <GeneratePreprocessedSourceListing>false</GeneratePreprocessedSourceListing>
+      <EnableAssemblyGeneratedCodeListing>true</EnableAssemblyGeneratedCodeListing>
+      <AssembledCodeListingFile>$(ProjectDir)\Listing\%(Filename).Lst</AssembledCodeListingFile>
+      <MakeAllSymbolsPublic>false</MakeAllSymbolsPublic>
+      <ListAllAvailableInformation>true</ListAllAvailableInformation>
+      <AddFirstPassListing>false</AddFirstPassListing>
+      <PreprocessorDefinitions>DEBUG=1</PreprocessorDefinitions>
+    </MASM>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
+      <OptimizeReferences>false</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Lib\x64;C:\Masm32\Lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;masm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EntryPointSymbol>Main</EntryPointSymbol>
+      <SubSystem>Console</SubSystem>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <DataExecutionPrevention>false</DataExecutionPrevention>
+      <TurnOffAssemblyGeneration>false</TurnOffAssemblyGeneration>
+      <SupportUnloadOfDelayLoadedDLL>false</SupportUnloadOfDelayLoadedDLL>
+      <SupportNobindOfDelayLoadedDLL>false</SupportNobindOfDelayLoadedDLL>
+    </Link>
+    <MASM>
+      <PreprocessorDefinitions>DEBUG=0</PreprocessorDefinitions>
+    </MASM>
+    <MASM>
+      <IncludePaths>$(ProjectDir)\Include;C:\Masm32\Include;C:\Masm32\Lib;C:\Masm32\Macros</IncludePaths>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableAssemblyGeneratedCodeListing>true</EnableAssemblyGeneratedCodeListing>
+      <AssembledCodeListingFile>$(ProjectDir)\Listing\%(Filename).lst</AssembledCodeListingFile>
+    </MASM>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

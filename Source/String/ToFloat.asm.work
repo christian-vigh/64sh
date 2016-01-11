@@ -1,0 +1,205 @@
+;**************************************************************************************************************
+;*
+;*  NAME
+;*	ToFloat.asm
+;*
+;*   DESCRIPTION
+;*	description.
+;*
+;*  AUTHOR
+;* 	Christian Vigh, 12/2012.
+;*
+;*   HISTORY
+;*   [Version : 1.0]    [Date : 2012/12/04]     [Author : CV]
+;*	Initial version.
+;*
+;**************************************************************************************************************/
+
+;
+; Masm32 include files.
+;
+.NOCREF
+	INCLUDE		Kernel32.inc
+	INCLUDE		User32.inc
+.CREF
+
+;
+; Generic include files
+;
+.NOLIST
+	INCLUDE		Macros.inc
+	INCLUDE		Assembler.inc
+	INCLUDE		String.inc
+.LIST
+
+
+.CODE
+
+
+;==============================================================================================================
+;=
+;=   NAME
+;=	ToFloat - Converts a string to a float.
+;=
+;=   DESCRIPTION
+;=	Converts a string to a floating-point value.
+;=
+;=   INPUT
+;=	RCX -
+;=		Pointer to the string to be converted.
+;=
+;=   OUTPUT
+;=
+;=	RAX -
+;=		Pointer to the end of the floating point value in the input string.
+;=
+;=	XMM0 -
+;=		Converted value.
+;=
+;=	ZF -
+;=		ZF is set if the supplied string is not a valid floating point value.
+;=
+;=   REGISTERS USED
+;=	None.
+;=
+;=   NOTES
+;=	A floating point value has the following form :
+;=
+;=		{ '+' | '-' } [digits] '.' [mantissa] { { '+' | '-' } [ 'e' | 'E' ] [exponent]
+;=
+;=	Spaces are not allowed.
+;=
+;===============================================================================================================*/
+Float$Ten		DQ		10.0	
+Float$Negate		DB		00H, 00H, 00H, 00H, 00H, 00H, 00H, 080H, 00H, 00H, 00H,	00H, 00H, 00H, 00H, 080H		
+
+String$ToFloat		PROC
+
+	; Register allocation
+	@DIGIT_COUNT			EQU	EBX
+	@DECIMAL_COUNT			EQU	ECX
+	@EXPONENT_VALUE			EQU	R8D
+	@NEGATIVE_SIGN			EQU	DL
+	@RESULT				EQU	XMM0
+	@VALUE_TEN			EQU	XMM1
+	@ACCUMULATOR			EQU	XMM2
+
+	; Initializations
+	MOV		RSI, RCX					; Source buffer address in RSI
+	XORPD		@RESULT, @RESULT				; XMM0 will hold the resulting value : initialize it to zero
+	XOR		@NEGATIVE_SIGN, @NEGATIVE_SIGN			; Set to one if the input number is negative
+	XOR		@DECIMAL_COUNT, @DECIMAL_COUNT			; Number of decimals encountered so far
+	XOR		@DIGIT_COUNT, @DIGIT_COUNT			; Number of digits encountered so far (including decimals)
+	XOR		@EXPONENT_VALUE, @EXPONENT_VALUE		; Exponent value
+	MOVSD		@VALUE_TEN, [ Float$Ten ]			; The value "10"
+	XORPD		@ACCUMULATOR, @ACCUMULATOR			; Current accumulator
+	XOR		EAX, EAX					; AL will hold the current digit ; make sure the rest of the register is zeroed out
+
+	; Start of scan loop
+	LODSB								; Get next character
+	OR		AL, AL					
+	JZ		Scanned						; We're over if we find the EOS character
+
+	; Check if there is a leading sign
+ScanForSign :
+	CMP		AL, '+'						; '+' sign : we just need to move to the next character
+	JZ		FoundPlusSign
+
+	CMP		AL, '-'						; '-' sign : just set the NEGATIVE flag...
+	JNZ		ScanForDigits
+
+	INC		@NEGATIVE_SIGN					; ... and fall through the loading of the next character
+
+FoundPlusSign :								; ... which is here
+	LODSB
+
+	; Optional leading sign processed. Continue with the integral part
+ScanForDigits :
+	String$IsDigit							; Check if current character is a digit
+	JZ		DigitsPartScanned
+
+	SUB		AL, '0'						; Convert digit to its integer value
+	ALIGN ( 8 )
+
+	MULSD		@ACCUMULATOR, @VALUE_TEN			; Multiply accumulator by 10
+	MOVD		@RESULT, EAX					; Current digit is converted to a DWORD and put into result
+	CVTDQ2PD	@RESULT, @RESULT				; Convert the 2 QWORD values in result into double values
+	ADDSD		@RESULT, @ACCUMULATOR				; Add the accumulator to the current digit value
+	MOVAPD		@ACCUMULATOR, @RESULT				; Current accumulator is now equal to : ( old accumulator * 10 ) + digit
+
+	INC		@DIGIT_COUNT					; Count one more digit
+	LODSB								; Get next character
+	
+	OR		AL, AL						; Check if we reached the end of string
+	JZ		Scanned
+
+	JMP		ScanForDigits					; Otherwise, process next digit
+
+	; We have processed the integral part of the double value.
+	; We must now check if there is a mantissa
+DigitsPartScanned :
+	CMP		AL, '.'						; Be cool : allow '.' and ',' to be used for the decimal point
+	JE		DecimalPointFound
+	CMP		AL, ',' 
+	JE		DecimalPointFound
+
+	JMP		AdjustBeforeExponent				; not a decimal point : maybe an exponent
+
+	; We have found a decimal point : we just have to skip to the next character
+DecimalPointFound :
+	LODSB
+
+	; We have met a decimal point and the current character is after this decimal point
+ScanForMantissa :
+	OR		AL, AL						; Check for end of string
+	JZ		Scanned
+
+	String$IsDigit							; Not a digit : check for an exponent
+	JZ		AdjustBeforeExponent
+
+	ALIGN ( 8 )
+
+	MULSD		@ACCUMULATOR, @VALUE_TEN			; Multiply accumulator by 10
+	MOVD		@RESULT, EAX					; Current digit is converted to a DWORD and put into result
+	CVTDQ2PD	@RESULT, @RESULT				; Convert the 2 QWORD values in result into double values
+	ADDSD		@RESULT, @ACCUMULATOR				; Add the accumulator to the current digit value
+	MOVAPD		@ACCUMULATOR, @RESULT				; Current accumulator is now equal to : ( old accumulator * 10 ) + digit
+
+	INC		@DIGIT_COUNT					; Count one more digit in total
+	INC		@DECIMAL_COUNT					; and one more decimal
+
+	LODSB								; Get next character
+	JMP		ScanForMantissa					; and shoot again
+
+	; Adjust the exponent to take into account the number of digits in the mantissa
+	; After that point, the exponent will be a negative value
+AdjustBeforeExponent :
+	MOV		@EXPONENT_VALUE, @DECIMAL_COUNT
+	NEG		@EXPONENT_VALUE
+
+	; If we found no digits, return an error
+	OR		@DIGIT_COUNT, @DIGIT_COUNT
+	JZ		RangeError
+
+	; Adjust the sign
+	OR		@NEGATIVE_SIGN, @NEGATIVE_SIGN
+	JZ		ScanForExponentSign
+	XORPD		@ACCUMULATOR, QWORD PTR [ Float$Negate ]
+
+	; The input number may contain an exponent ; check if there is an optional sign before it.
+ScanForExponentSign :
+
+
+Scanned :
+	MOV		RAX, RDI					; Return pointer to the end of the string
+	RET
+
+	; No digits found : return an error
+RangeError :
+	MOV		RAX, RDI
+	XORPD		@RESULT, @RESULT
+	RET
+
+String$ToFloat		ENDP
+
+END

@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="Include\Assembler.inc">
+      <Filter>Include</Filter>
+    </None>
+    <None Include="Include\Macros.inc">
+      <Filter>Include</Filter>
+    </None>
+    <None Include="Include\64th.inc">
+      <Filter>Include</Filter>
+    </None>
+    <None Include="Include\64sh.inc">
+      <Filter>Include</Filter>
+    </None>
+    <None Include="Include\Debug.inc">
+      <Filter>Include</Filter>
+    </None>
+    <None Include="Include\CommandLine.inc">
+      <Filter>Include</Filter>
+    </None>
+    <None Include="Include\String.inc">
+      <Filter>Include</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="Source\64sh.asm">
+      <Filter>Source</Filter>
+    </MASM>
+    <MASM Include="Source\Syscalls.asm">
+      <Filter>Source</Filter>
+    </MASM>
+    <MASM Include="Source\Interpreter.asm">
+      <Filter>Source</Filter>
+    </MASM>
+    <MASM Include="Source\VM.asm">
+      <Filter>Source</Filter>
+    </MASM>
+    <MASM Include="Source\CommandLine.asm">
+      <Filter>Source</Filter>
+    </MASM>
+    <MASM Include="Source\Primitives\Primitives.asm">
+      <Filter>Source\Primitives</Filter>
+    </MASM>
+    <MASM Include="Source\String\Tables.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\ToInteger.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\Helpers.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\Length.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\TrimRight.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\TrimLeft.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\Trim.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\Copy.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\CopyFixed.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\CopyLeft.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\CopyRight.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\Concatenate.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\DuplicateChar.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\DuplicateString.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\DeleteRight.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\DeleteLeft.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\ToUpperString.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\ToLowerString.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\ToUpperChar.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\ToLowerChar.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\Delete.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\ReplaceChar.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\ReplaceCharNoCase.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\Left.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\Right.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\StripChar.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\Reverse.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\RepeatChar.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\RepeatString.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\ToFloat.asm.work">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\CatenateChar.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\CatenateString.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\Compare.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\CompareFixed.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\CompareFixedNoCase.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\CompareNoCase.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\FormatString.asm.work">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\IntegerToString.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\SearchChar.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\SearchCharNoCase.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\SearchString.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\SearchStringNoCase.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\UnsignedToBase16String.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\UnsignedToBase2String.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\UnsignedToBase8String.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\UnsignedToString.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\Base64Encode.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\CountCharOccurrences.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\CountCharOccurrencesNoCase.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\Base64Decode.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+    <MASM Include="Source\String\ReplaceString.asm">
+      <Filter>Source\String</Filter>
+    </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{4f130b2e-63dd-4853-bff2-107ece4cee3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{a6429ec0-1214-45ae-b06d-fd79f7cc92f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Primitives">
+      <UniqueIdentifier>{f1297112-01a4-438a-b7bc-946757f59145}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\String">
+      <UniqueIdentifier>{305703d0-d7d1-41c5-9212-8a3cadd5d5e2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
